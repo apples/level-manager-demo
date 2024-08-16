@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=4 uid="uid://bafgedjs4slr7"]
+
+[ext_resource type="Script" path="res://node_types/level.gd" id="1_lkjee"]
+[ext_resource type="Texture2D" uid="uid://84cf65i4bog5" path="res://backgrounds/desert.png" id="1_m1ysl"]
+[ext_resource type="TileSet" uid="uid://ge1anpssgkrm" path="res://tilesets/tiles_tileset.tres" id="2_xw28r"]
+
+[node name="Desert1" type="Node2D"]
+script = ExtResource("1_lkjee")
+next_level_left = "grasslands_2"
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 120)
+texture = ExtResource("1_m1ysl")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAATAA4AAAAAAAEAAAASAA4AAAAAAAEAAAARAA4AAAAAAAEAAAAQAA4AAAAAAAEAAAAPAA4AAAAAAAEAAAAOAA4AAAAAAAEAAAAKAA4AAAABAAEAAAALAA4AAAABAAEAAAAMAA4AAAABAAEAAAANAA4AAAAAAAEAAAAJAA4AAAABAAEAAAAIAA4AAAAAAAEAAAAHAA4AAAAAAAEAAAAGAA4AAAAAAAEAAAAFAA4AAAAAAAEAAAAEAA4AAAAAAAEAAAADAA4AAAAAAAEAAAACAA4AAAAAAAEAAAABAA4AAAAAAAEAAAAAAA4AAAAAAAEAAAAKAA0AAAABAAEAAAALAA0AAAABAAEAAAAJAA0AAAAAAAEAAAAMAA0AAAAAAAEAAAALAAwAAAAAAAEAAAAKAAwAAAAAAAEAAAA=")
+tile_set = ExtResource("2_xw28r")

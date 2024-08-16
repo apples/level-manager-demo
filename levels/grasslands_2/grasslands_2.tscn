@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=4 uid="uid://q76fylsoj14q"]
+
+[ext_resource type="Script" path="res://node_types/level.gd" id="1_d5vwn"]
+[ext_resource type="Texture2D" uid="uid://b3suq8sibks36" path="res://backgrounds/clouds.png" id="1_kkepf"]
+[ext_resource type="TileSet" uid="uid://ge1anpssgkrm" path="res://tilesets/tiles_tileset.tres" id="2_xysua"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6c35i"]
+size = Vector2(64, 63)
+
+[sub_resource type="Gradient" id="Gradient_1q8h5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Grasslands2" type="Node2D"]
+script = ExtResource("1_d5vwn")
+next_level_left = "grasslands_1"
+next_level_right = "desert_1"
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 120)
+texture = ExtResource("1_kkepf")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAA4AAAAAAAAAAAABAA4AAAAAAAAAAAACAA4AAAAAAAAAAAADAA4AAAAAAAAAAAAEAA4AAAABAAAAAAAFAA4AAAABAAAAAAAGAA4AAAABAAAAAAAHAA4AAAABAAAAAAAMAA4AAAAAAAAAAAAOAA4AAAAAAAAAAAAPAA4AAAAAAAAAAAAQAA4AAAAAAAAAAAARAA4AAAAAAAAAAAASAA4AAAAAAAAAAAATAA4AAAAAAAAAAAANAA4AAAAAAAAAAAAFAA0AAAAAAAAAAAAGAA0AAAABAAAAAAAGAAwAAAAAAAAAAAAHAAwAAAAAAAAAAAAHAA0AAAABAAAAAAAEAA0AAAAAAAAAAAAHAA8AAAABAAAAAAAMAA8AAAABAAAAAAAHABAAAAABAAAAAAAIABAAAAABAAAAAAAJABAAAAABAAAAAAAKABAAAAABAAAAAAALABAAAAABAAAAAAAMABAAAAABAAAAAAA=")
+tile_set = ExtResource("2_xysua")
+
+[node name="AirGust" type="Area2D" parent="."]
+position = Vector2(160, 232)
+gravity_space_override = 3
+gravity_point_center = Vector2(0, -1)
+gravity_direction = Vector2(0, -1)
+linear_damp_space_override = 3
+linear_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AirGust"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_6c35i")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="AirGust"]
+position = Vector2(0, 8)
+lifetime = 0.33
+emission_shape = 3
+emission_rect_extents = Vector2(31, 1)
+gravity = Vector2(0, -980)
+color_ramp = SubResource("Gradient_1q8h5")

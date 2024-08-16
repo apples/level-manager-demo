@@ -1,0 +1,47 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="LevelManagerDemo"
+run/main_scene="res://screens/gameplay.tscn"
+config/features=PackedStringArray("4.3", "Mobile")
+
+[display]
+
+window/size/viewport_width=320
+window/size/viewport_height=240
+window/size/window_width_override=640
+window/size/window_height_override=480
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
+[dotnet]
+
+project/assembly_name="LevelManagerDemo"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[file_customization]
+
+folder_colors={
+"res://backgrounds/": "purple",
+"res://entities/": "teal",
+"res://levels/": "yellow",
+"res://node_types/": "gray",
+"res://screens/": "red",
+"res://tilesets/": "orange"
+}
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
