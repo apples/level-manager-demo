@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://chs0untf62haf"]
+
+[ext_resource type="Script" path="res://node_types/level.gd" id="1_k7txj"]
+[ext_resource type="Texture2D" uid="uid://b3suq8sibks36" path="res://backgrounds/clouds.png" id="2_scdlr"]
+[ext_resource type="TileSet" uid="uid://ge1anpssgkrm" path="res://tilesets/tiles_tileset.tres" id="3_xndwp"]
+
+[node name="Desert2" type="Node2D"]
+script = ExtResource("1_k7txj")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(160, 120)
+texture = ExtResource("2_scdlr")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("3_xndwp")

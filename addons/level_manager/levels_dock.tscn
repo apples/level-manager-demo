@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnrh5ofubvyvv"]
+
+[ext_resource type="Script" path="res://addons/level_manager/levels_dock.gd" id="1_c0qtm"]
+
+[node name="Levels" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c0qtm")
+metadata/_edit_vertical_guides_ = [-21.0]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CreateButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create Level"
+
+[node name="Tree" type="Tree" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+hide_root = true
+
+[node name="CreateLevelDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Create Level"
+position = Vector2i(0, 36)
+size = Vector2i(419, 150)
+
+[node name="GridContainer" type="GridContainer" parent="CreateLevelDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 411.0
+offset_bottom = 101.0
+columns = 2
+
+[node name="NameLabel" type="Label" parent="CreateLevelDialog/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Level Name:"
+horizontal_alignment = 2
+
+[node name="NameEdit" type="LineEdit" parent="CreateLevelDialog/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/minimum_character_width = 20
+
+[node name="PathLabel" type="Label" parent="CreateLevelDialog/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Level Path:"
+horizontal_alignment = 2
+
+[node name="PathEdit" type="LineEdit" parent="CreateLevelDialog/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/minimum_character_width = 20
+editable = false
+
+[node name="Spacer" type="Control" parent="CreateLevelDialog/GridContainer"]
+layout_mode = 2
+
+[node name="ErrorLabel" type="Label" parent="CreateLevelDialog/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="button_clicked" from="VBoxContainer/Tree" to="." method="_on_tree_button_clicked"]
+[connection signal="confirmed" from="CreateLevelDialog" to="." method="_on_create_level_dialog_confirmed"]
+[connection signal="text_changed" from="CreateLevelDialog/GridContainer/NameEdit" to="." method="_on_name_edit_text_changed"]

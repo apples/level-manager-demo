@@ -29,7 +29,7 @@ project/assembly_name="LevelManagerDemo"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/level_manager/plugin.cfg")
 
 [file_customization]
 
