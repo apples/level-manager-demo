@@ -5,9 +5,9 @@ enum {
 	BUTTON_EDIT_SCENE = 1,
 }
 
-const Plugin = preload("res://addons/level_manager/plugin.gd")
+const LevelManager = preload("res://addons/level_manager/level_manager.gd")
 
-var plugin: Plugin
+var level_manager: LevelManager
 
 var root_item: TreeItem
 
@@ -25,16 +25,19 @@ func _ready() -> void:
 	if EditorInterface.get_edited_scene_root() == self:
 		return
 	
+	level_manager = $/root/LevelManager
+	assert(level_manager)
+	
 	root_item = tree.create_item()
 	
 	refresh()
-	plugin.levels_refreshed.connect(refresh)
+	level_manager.levels_refreshed.connect(refresh)
 	
 	create_button.icon = get_theme_icon("Add", "EditorIcons")
 	error_label.add_theme_color_override("font_color", get_theme_color("error_color", "Editor"))
 
 func refresh() -> void:
-	var levels := plugin.levels.values()
+	var levels := level_manager.levels.values()
 	
 	for i in levels.size():
 		var level_item: TreeItem
@@ -60,7 +63,7 @@ func _on_tree_button_clicked(item: TreeItem, column: int, id: int, mouse_button_
 	match id:
 		BUTTON_EDIT_SCENE:
 			var level_id = item.get_metadata(column)
-			var level = plugin.levels[level_id]
+			var level = level_manager.levels[level_id]
 			EditorInterface.open_scene_from_path(level.scene_file)
 
 func _on_create_button_pressed() -> void:
@@ -72,7 +75,7 @@ func _on_name_edit_text_changed(_new_text: String) -> void:
 
 func _update_create_level_dialog() -> void:
 	var level_id := name_edit.text.to_snake_case()
-	var level_dir := plugin.LEVELS_DIR.path_join(level_id)
+	var level_dir := level_manager.LEVELS_DIR.path_join(level_id)
 	var level_scene_file := level_dir.path_join(level_id + ".tscn")
 	
 	path_edit.text = level_scene_file
@@ -92,7 +95,7 @@ func _update_create_level_dialog() -> void:
 
 func _on_create_level_dialog_confirmed() -> void:
 	var level_id := name_edit.text.to_snake_case()
-	var level_dir := plugin.LEVELS_DIR.path_join(level_id)
+	var level_dir := level_manager.LEVELS_DIR.path_join(level_id)
 	var level_scene_file := level_dir.path_join(level_id + ".tscn")
 	
 	DirAccess.make_dir_recursive_absolute(level_dir)
